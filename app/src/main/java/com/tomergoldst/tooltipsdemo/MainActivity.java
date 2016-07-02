@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements
 
 
     @Override
-    public void onTipDismissed(View view) {
-        Log.d(TAG, "Dismissed view " + view.hashCode());
+    public void onTipDismissed(View view, boolean byUser) {
+        Log.d(TAG, "Dismissed view " + view.hashCode() + " ByUser = " + byUser);
     }
 
     @Override

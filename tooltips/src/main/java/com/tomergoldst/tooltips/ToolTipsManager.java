@@ -44,7 +44,7 @@ public class ToolTipsManager {
     private TipListener mListener;
 
     public interface TipListener {
-        void onTipDismissed(View view);
+        void onTipDismissed(View view, boolean byUser);
     }
 
     public ToolTipsManager(){
@@ -110,7 +110,7 @@ public class ToolTipsManager {
         tipView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss(view);
+                dismiss(view, true);
             }
         });
 
@@ -172,18 +172,18 @@ public class ToolTipsManager {
         mAnimationDuration = duration;
     }
 
-    public boolean dismiss(View tipView) {
+    public boolean dismiss(View tipView, boolean byUser) {
         if (tipView != null && isVisible(tipView)) {
             int key = (int) tipView.getTag();
             mTipsMap.remove(key);
-            animateDismiss(tipView);
+            animateDismiss(tipView, byUser);
             return true;
         }
         return false;
     }
 
     public boolean dismiss(Integer key) {
-        return mTipsMap.containsKey(key) && dismiss(mTipsMap.get(key));
+        return mTipsMap.containsKey(key) && dismiss(mTipsMap.get(key), false);
     }
 
     public View find(Integer key) {
@@ -195,25 +195,25 @@ public class ToolTipsManager {
 
     public boolean findAndDismiss(final View anchorView) {
         View view = find(anchorView.hashCode());
-        return view != null && dismiss(view);
+        return view != null && dismiss(view, false);
     }
 
     public void clear() {
         if (!mTipsMap.isEmpty()) {
             for (Map.Entry<Integer, View> entry : mTipsMap.entrySet()) {
-                dismiss(entry.getValue());
+                dismiss(entry.getValue(), false);
             }
         }
         mTipsMap.clear();
     }
 
-    private void animateDismiss(final View view){
+    private void animateDismiss(final View view, final boolean byUser) {
         AnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 if (mListener != null){
-                    mListener.onTipDismissed(view);
+                    mListener.onTipDismissed(view, byUser);
                 }
             }
         }).start();

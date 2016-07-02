@@ -99,7 +99,6 @@ public class ToolTipsManager {
 
         // add tip to root layout
         toolTip.getRootView().addView(tipView);
-        // find where tip view is located currently on screen
 
         // find where to position the tool tip
         Point p = ToolTipCoordinatesFinder.getCoordinates(tipView, toolTip);

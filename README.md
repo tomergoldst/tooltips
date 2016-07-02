@@ -46,6 +46,29 @@ You can override the 'onWindowFocusChanged()' of an Activity and show there, Sta
   mToolTipsManager.show(builder.build());
 ```
 
+Each tip is dismissable by clicking on it, if you want to dismiss a tip from code there are a few options, The most simple way is to do the following
+```
+mToolTipsManager.findAndDismiss(mTextView);
+```
+Where 'mTextView' is the same view we asked to position a tip near it
+
+If you want to react when tip has been dismissed, Implement ToolTipsManager.TipListener interface and use appropriate ToolTipsManager constructor
+```
+public class MainActivity extends AppCompatActivity implements ToolTipsManager.TipListener
+.
+.
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    mToolTipsManager = new ToolTipsManager(this);
+}
+.
+.
+@Override
+public void onTipDismissed(View view) {
+    Log.d(TAG, "Dismissed view " + view.hashCode());
+}
+```
+
 ### License
 ```
 Copyright 2016 Tomer Goldstein

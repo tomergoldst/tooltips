@@ -1,5 +1,5 @@
-# tooltips
-Simple to use library for android, enabling to add a tooltip near any view with ease
+# Tooltips
+Simple to use library for android, Enabling to add a tooltip near any view with ease
 
 <img src="https://cloud.githubusercontent.com/assets/19874536/16538907/40f359ec-403a-11e6-8e91-388b12236b2e.png" width="150 height="150"/>
 <img src="https://cloud.githubusercontent.com/assets/19874536/16538909/41088d44-403a-11e6-9ddd-353b01932047.png" width="150 height="150"/>
@@ -7,6 +7,13 @@ Simple to use library for android, enabling to add a tooltip near any view with 
 <img src="https://cloud.githubusercontent.com/assets/19874536/16538908/4107dd7c-403a-11e6-8867-16a751da2f53.png" width="150 height="150"/>
 
 ##Instructions
+
+Add a dependency to your app build.gradle
+```
+dependencies {
+    compile 'com.tomergoldst.android:tooltips:1.0.0'    
+}
+```
 
 Create a ToolTipsManager object
 ```
@@ -24,24 +31,20 @@ with another layout. Prefer to pass in a layout which is higher in the xml tree 
 tip view more visible space.
  
 OPTIONAL: Customize your tip with background color, text color, alignment, text gravity and more. 
-By default all alignments are centered.
 ```
   builder.setAlign(ToolTip.ALIGN_LEFT)
   builder.setBackgroundColor(getResources().getColor(R.color.colorOrange));
   builder.setTextColor(getResources().getColor(R.color.colorBlack));
-  builder.setGravity(ToolTip.GRAVITY_CENTER);
+  builder.setGravity(ToolTip.GRAVITY_RIGHT);
 ```
 
 Use ToolTipManger to show the tip
 
-IMPORTANT: this must be called after the layout has been drawn
-You can override the 'onWindowFocusChanged()' and show there, Start a delayed runnable from onStart() , React to user action
-or any other method that works for you
+IMPORTANT: This must be called after the layout has been drawn
+You can override the 'onWindowFocusChanged()' of an Activity and show there, Start a delayed runnable from onStart() , React to user action or any other method that works for you
 ```
   mToolTipsManager.show(builder.build());
 ```
-
-
 
 ### License
 ```

@@ -18,7 +18,7 @@ dependencies {
 Create a ToolTipsManager object
 ```
   ToolTipsManager mToolTipsManager;
-  mToolTipsManager = new ToolTipsManager(this);
+  mToolTipsManager = new ToolTipsManager();
 ```
   
 Use the ToolTip Builder to construct your tip

@@ -1,10 +1,8 @@
 # Tooltips
 Simple to use library for android, Enabling to add a tooltip near any view with ease
 
-<img src="https://cloud.githubusercontent.com/assets/19874536/16538907/40f359ec-403a-11e6-8e91-388b12236b2e.png" width="150 height="150"/>
-<img src="https://cloud.githubusercontent.com/assets/19874536/16538909/41088d44-403a-11e6-9ddd-353b01932047.png" width="150 height="150"/>
-<img src="https://cloud.githubusercontent.com/assets/19874536/16538906/40eee45c-403a-11e6-8dec-87b7d7b19976.png" width="150 height="150"/>
-<img src="https://cloud.githubusercontent.com/assets/19874536/16538908/4107dd7c-403a-11e6-8867-16a751da2f53.png" width="150 height="150"/>
+<img src="https://cloud.githubusercontent.com/assets/19874536/16546659/485f29ba-415a-11e6-898d-c880e4b643b6.gif" width="150 height="150"/>
+<img src="https://cloud.githubusercontent.com/assets/19874536/16546707/9b891816-415b-11e6-9be6-735a5649f1d7.gif" width="150 height="150"/>
 
 ##Instructions
 

@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tomergoldst.tooltips.ToolTip;
 import com.tomergoldst.tooltips.ToolTipsManager;
@@ -118,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements
                 mToolTipsManager.findAndDismiss(mTextView);
                 builder = new ToolTip.Builder(this, mTextView, mRootLayout, text, ToolTip.POSITION_ABOVE);
                 builder.setAlign(mAlign);
+                builder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "Above tip view on click", Toast.LENGTH_LONG).show();
+                    }
+                });
                 mToolTipsManager.show(builder.build());
                 break;
             case R.id.button_below:

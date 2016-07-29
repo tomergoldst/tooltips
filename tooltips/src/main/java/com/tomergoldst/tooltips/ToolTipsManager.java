@@ -68,7 +68,7 @@ public class ToolTipsManager {
         return tipView;
     }
 
-    private View create(ToolTip toolTip) {
+    private View create(final ToolTip toolTip) {
 
         if (toolTip.getAnchorView() == null) {
             Log.e(TAG, "Unable to create a tip, anchor view is null");
@@ -87,7 +87,7 @@ public class ToolTipsManager {
         }
 
         // init tip view parameters
-        TextView tipView = createTipView(toolTip);
+        final TextView tipView = createTipView(toolTip);
 
         // on RTL languages replace sides
         if (UiUtils.isRtl()) {
@@ -111,6 +111,9 @@ public class ToolTipsManager {
             @Override
             public void onClick(View view) {
                 dismiss(view, true);
+                if (toolTip.getClickListener() != null) {
+                    toolTip.getClickListener().onClick(view);
+                }
             }
         });
 

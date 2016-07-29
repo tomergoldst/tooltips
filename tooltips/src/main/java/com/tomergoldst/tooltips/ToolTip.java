@@ -61,6 +61,12 @@ public class ToolTip {
     private float mElevation;
     private @Gravity int mTextGravity;
 
+    public View.OnClickListener getClickListener() {
+        return mClickListener;
+    }
+
+    private View.OnClickListener mClickListener;
+
     public ToolTip(Builder builder){
         mContext = builder.mContext;
         mAnchorView = builder.mAnchorView;
@@ -76,6 +82,7 @@ public class ToolTip {
         mTextColor = builder.mTextColor;
         mElevation = builder.mElevation;
         mTextGravity = builder.mTextGravity;
+        mClickListener = builder.mClickListener;
     }
 
     public Context getContext() {
@@ -191,6 +198,8 @@ public class ToolTip {
         private float mElevation;
         private @Gravity int mTextGravity;
 
+        private View.OnClickListener mClickListener;
+
         /**
          *
          * @param context context
@@ -212,6 +221,19 @@ public class ToolTip {
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
             mTextColor = context.getResources().getColor(R.color.colorText);
             mTextGravity = GRAVITY_LEFT;
+            mClickListener = mDefaultClickListener;
+        }
+
+        private View.OnClickListener mDefaultClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // do noting now.
+            }
+        };
+
+        public Builder setOnClickListener(View.OnClickListener listener) {
+            mClickListener = listener;
+            return this;
         }
 
         public Builder setPosition(@Position int position){

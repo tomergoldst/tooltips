@@ -44,7 +44,7 @@ public class ToolTipsManager {
     private TipListener mListener;
 
     public interface TipListener {
-        void onTipDismissed(View view, boolean byUser);
+        void onTipDismissed(View view, int anchorViewId, boolean byUser);
     }
 
     public ToolTipsManager(){
@@ -82,8 +82,8 @@ public class ToolTipsManager {
 
         // only one tip is allowed near an anchor view at the same time, thus
         // reuse tip if already exist
-        if (mTipsMap.containsKey(toolTip.getAnchorView().hashCode())) {
-            return mTipsMap.get(toolTip.getAnchorView().hashCode());
+        if (mTipsMap.containsKey(toolTip.getAnchorView().getId())) {
+            return mTipsMap.get(toolTip.getAnchorView().getId());
         }
 
         // init tip view parameters
@@ -114,12 +114,12 @@ public class ToolTipsManager {
             }
         });
 
-        // store anchorView hashcode with tipView
-        int hashCode = toolTip.getAnchorView().hashCode();
-        tipView.setTag(hashCode);
+        // bind tipView with anchorView id
+        int anchorViewId = toolTip.getAnchorView().getId();
+        tipView.setTag(anchorViewId);
 
-        // enter tip to map by 'anchorView' hash code
-        mTipsMap.put(hashCode, tipView);
+        // enter tip to map by 'anchorView' id
+        mTipsMap.put(anchorViewId, tipView);
 
         return tipView;
 
@@ -194,7 +194,7 @@ public class ToolTipsManager {
     }
 
     public boolean findAndDismiss(final View anchorView) {
-        View view = find(anchorView.hashCode());
+        View view = find(anchorView.getId());
         return view != null && dismiss(view, false);
     }
 
@@ -213,7 +213,7 @@ public class ToolTipsManager {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 if (mListener != null){
-                    mListener.onTipDismissed(view, byUser);
+                    mListener.onTipDismissed(view, (Integer) view.getTag(), byUser);
                 }
             }
         }).start();

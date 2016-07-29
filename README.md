@@ -9,7 +9,7 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 Add a dependency to your app build.gradle
 ```groovy
 dependencies {
-    compile 'com.tomergoldst.android:tooltips:1.0.1'    
+    compile 'com.tomergoldst.android:tooltips:1.0.2'    
 }
 ```
 
@@ -62,8 +62,12 @@ protected void onCreate(Bundle savedInstanceState) {
 .
 .
 @Override
-public void onTipDismissed(View view, boolean byUser) {
-    Log.d(TAG, "Dismissed view " + view.hashCode() + " ByUser = " + byUser);
+public void onTipDismissed(View view, int anchorViewId, boolean byUser) {
+    Log.d(TAG, "tip near anchor view " + anchorViewId + " dismissed");
+
+    if (anchorViewId == R.id.text_view) {
+        // Do something when a tip near view with id "R.id.text_view" has been dismissed
+    }
 }
 ```
 

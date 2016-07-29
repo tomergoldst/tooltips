@@ -30,7 +30,7 @@ tip view more visible space.
  
 OPTIONAL: Customize your tip with background color, text color, alignment, text gravity and more. 
 ```java
-builder.setAlign(ToolTip.ALIGN_LEFT)
+builder.setAlign(ToolTip.ALIGN_LEFT);
 builder.setBackgroundColor(getResources().getColor(R.color.colorOrange));
 builder.setTextColor(getResources().getColor(R.color.colorBlack));
 builder.setGravity(ToolTip.GRAVITY_RIGHT);

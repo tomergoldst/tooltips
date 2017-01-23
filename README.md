@@ -5,15 +5,14 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 <img src="https://cloud.githubusercontent.com/assets/19874536/16546707/9b891816-415b-11e6-9be6-735a5649f1d7.gif" width="150 height="150"/>
 
 ##What's new
-- v 1.0.4 remove conflicting application attributes
-- v 1.0.3 add spannable text support
+- v 1.0.5 remove conflicting application attributes
 
 ##Instructions
 
 Add a dependency to your app build.gradle
 ```groovy
 dependencies {
-    compile 'com.tomergoldst.android:tooltips:1.0.4'
+    compile 'com.tomergoldst.android:tooltips:1.0.5'
 }
 ```
 

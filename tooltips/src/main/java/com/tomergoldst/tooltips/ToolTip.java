@@ -18,6 +18,7 @@ package com.tomergoldst.tooltips;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
+import android.text.Spannable;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -60,6 +61,7 @@ public class ToolTip {
     private int mTextColor;
     private float mElevation;
     private @Gravity int mTextGravity;
+    private Spannable mSpannableMessage;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -76,6 +78,7 @@ public class ToolTip {
         mTextColor = builder.mTextColor;
         mElevation = builder.mElevation;
         mTextGravity = builder.mTextGravity;
+        mSpannableMessage = builder.mSpannableMessage;
     }
 
     public Context getContext() {
@@ -165,15 +168,19 @@ public class ToolTip {
                 gravity = android.view.Gravity.CENTER;
                 break;
             case GRAVITY_LEFT:
-                gravity = android.view.Gravity.LEFT;
+                gravity = android.view.Gravity.START;
                 break;
             case GRAVITY_RIGHT:
-                gravity = android.view.Gravity.RIGHT;
+                gravity = android.view.Gravity.END;
                 break;
             default:
                 gravity = android.view.Gravity.CENTER;
         }
         return gravity;
+    }
+
+    public Spannable getSpannableMessage() {
+        return mSpannableMessage;
     }
 
     public static class Builder {
@@ -190,6 +197,8 @@ public class ToolTip {
         private int mTextColor;
         private float mElevation;
         private @Gravity int mTextGravity;
+        private Spannable mSpannableMessage;
+
 
         /**
          *
@@ -204,6 +213,30 @@ public class ToolTip {
             mAnchorView = anchorView;
             mRootViewGroup = root;
             mMessage = message;
+            mSpannableMessage = null;
+            mPosition = position;
+            mAlign = ALIGN_CENTER;
+            mOffsetX = 0;
+            mOffsetY = 0;
+            mArrow = true;
+            mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
+            mTextColor = context.getResources().getColor(R.color.colorText);
+            mTextGravity = GRAVITY_LEFT;
+        }
+
+        /**
+         * @param context    context
+         * @param anchorView the view which near it we want to put the tip
+         * @param root       a class extends ViewGroup which the created tip view will be added to
+         * @param message    spannable message to show
+         * @param position   put the tip above / below / left to / right to
+         */
+        public Builder(Context context, View anchorView, ViewGroup root, Spannable message, @Position int position) {
+            mContext = context;
+            mAnchorView = anchorView;
+            mRootViewGroup = root;
+            mMessage = null;
+            mSpannableMessage = message;
             mPosition = position;
             mAlign = ALIGN_CENTER;
             mOffsetX = 0;
@@ -226,7 +259,7 @@ public class ToolTip {
 
         /**
          * @param offset offset to move the tip on x axis after tip was positioned
-         * @return
+         * @return offset
          */
         public Builder setOffsetX(int offset){
             mOffsetX = offset;
@@ -235,7 +268,7 @@ public class ToolTip {
 
         /**
          * @param offset offset to move the tip on y axis after tip was positioned
-         * @return
+         * @return offset
          */
         public Builder setOffsetY(int offset){
             mOffsetY = offset;

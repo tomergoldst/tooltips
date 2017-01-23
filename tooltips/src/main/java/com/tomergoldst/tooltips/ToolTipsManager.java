@@ -52,7 +52,7 @@ public class ToolTipsManager {
     }
 
     public ToolTipsManager(TipListener listener){
-        mAnimationDuration = DEFAULT_ANIM_DURATION;;
+        mAnimationDuration = DEFAULT_ANIM_DURATION;
         mListener = listener;
     }
 
@@ -137,7 +137,7 @@ public class ToolTipsManager {
     private TextView createTipView(ToolTip toolTip) {
         TextView tipView = new TextView(toolTip.getContext());
         tipView.setTextColor(toolTip.getTextColor());
-        tipView.setText(toolTip.getMessage());
+        tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
         tipView.setVisibility(View.INVISIBLE);
         tipView.setGravity(toolTip.getTextGravity());
         setTipViewElevation(tipView, toolTip);

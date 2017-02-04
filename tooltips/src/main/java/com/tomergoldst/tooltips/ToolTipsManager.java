@@ -137,6 +137,7 @@ public class ToolTipsManager {
     private TextView createTipView(ToolTip toolTip) {
         TextView tipView = new TextView(toolTip.getContext());
         tipView.setTextColor(toolTip.getTextColor());
+        tipView.setTextSize(toolTip.getTextSize());
         tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
         tipView.setVisibility(View.INVISIBLE);
         tipView.setGravity(toolTip.getTextGravity());

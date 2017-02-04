@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements
                 builder.setBackgroundColor(getResources().getColor(R.color.colorLightGreen));
                 builder.setTextColor(getResources().getColor(R.color.colorBlack));
                 builder.setGravity(ToolTip.GRAVITY_CENTER);
+                builder.setTextSize(12);
                 mToolTipsManager.show(builder.build());
                 break;
             case R.id.button_right_to:

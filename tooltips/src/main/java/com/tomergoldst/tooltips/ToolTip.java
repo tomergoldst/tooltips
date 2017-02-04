@@ -62,6 +62,7 @@ public class ToolTip {
     private float mElevation;
     private @Gravity int mTextGravity;
     private Spannable mSpannableMessage;
+    private int mTextSize;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -79,6 +80,7 @@ public class ToolTip {
         mElevation = builder.mElevation;
         mTextGravity = builder.mTextGravity;
         mSpannableMessage = builder.mSpannableMessage;
+        mTextSize = builder.mTextSize;
     }
 
     public Context getContext() {
@@ -161,6 +163,10 @@ public class ToolTip {
         return mElevation;
     }
 
+    public int getTextSize() {
+        return mTextSize;
+    }
+
     public int getTextGravity(){
         int gravity;
         switch (mTextGravity){
@@ -198,6 +204,7 @@ public class ToolTip {
         private float mElevation;
         private @Gravity int mTextGravity;
         private Spannable mSpannableMessage;
+        private int mTextSize;
 
 
         /**
@@ -222,6 +229,7 @@ public class ToolTip {
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
             mTextColor = context.getResources().getColor(R.color.colorText);
             mTextGravity = GRAVITY_LEFT;
+            mTextSize = 14;
         }
 
         /**
@@ -245,6 +253,7 @@ public class ToolTip {
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
             mTextColor = context.getResources().getColor(R.color.colorText);
             mTextGravity = GRAVITY_LEFT;
+            mTextSize = 14;
         }
 
         public Builder setPosition(@Position int position){
@@ -297,6 +306,11 @@ public class ToolTip {
 
         public Builder setGravity(@Gravity int gravity){
             mTextGravity = gravity;
+            return this;
+        }
+
+        public Builder setTextSize(int sizeInSp) {
+            mTextSize = sizeInSp;
             return this;
         }
 

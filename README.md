@@ -5,6 +5,7 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 <img src="https://cloud.githubusercontent.com/assets/19874536/16546707/9b891816-415b-11e6-9be6-735a5649f1d7.gif" width="150 height="150"/>
 
 ##What's new
+- v 1.0.6 add text size attribute to tooltip builder
 - v 1.0.5 remove conflicting application attributes
 
 ##Instructions
@@ -12,7 +13,7 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 Add a dependency to your app build.gradle
 ```groovy
 dependencies {
-    compile 'com.tomergoldst.android:tooltips:1.0.5'
+    compile 'com.tomergoldst.android:tooltips:1.0.6'
 }
 ```
 
@@ -37,6 +38,7 @@ builder.setAlign(ToolTip.ALIGN_LEFT);
 builder.setBackgroundColor(getResources().getColor(R.color.colorOrange));
 builder.setTextColor(getResources().getColor(R.color.colorBlack));
 builder.setGravity(ToolTip.GRAVITY_RIGHT);
+builder.setTextSize(12);
 ```
 
 Use ToolTipManger to show the tip

@@ -7,6 +7,8 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 - v 1.0.6 add text size attribute to tooltip builder
 - v 1.0.5 remove conflicting application attributes
 
+##### if you are looking for a more robust features check out https://github.com/tomergoldst/hoverview
+
 ## Instructions
 
 Add a dependency to your app build.gradle
@@ -91,7 +93,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-##### if you are looking for a more robust features check out https://github.com/tomergoldst/hoverview
 
 

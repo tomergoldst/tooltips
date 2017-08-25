@@ -187,6 +187,20 @@ public class ToolTipsManager {
         return mTipsMap.containsKey(key) && dismiss(mTipsMap.get(key), false);
     }
 
+    /**
+     * Hide and remove all tooltips.
+     */
+    public void dismissAll() {
+        for (Map.Entry<Integer, View> entry : mTipsMap.entrySet()) {
+            View tipView = entry.getValue();
+            int key = entry.getKey();
+            if (tipView != null && isVisible(tipView)) {
+                mTipsMap.remove(key);
+                animateDismiss(tipView, false);
+            }
+        }
+    }
+
     public View find(Integer key) {
         if (mTipsMap.containsKey(key)) {
             return mTipsMap.get(key);

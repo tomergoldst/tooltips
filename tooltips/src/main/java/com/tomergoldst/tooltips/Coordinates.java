@@ -22,14 +22,14 @@ import android.view.View;
  * Created by Tomer on 30/06/2016.
  *
  */
-public class Coordinates {
+class Coordinates {
 
     int left;
     int top;
     int right;
     int bottom;
 
-    public Coordinates(View view){
+    Coordinates(View view) {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         left = location[0];

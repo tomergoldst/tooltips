@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements
         mBelowBtn.setOnClickListener(this);
         mLeftToBtn.setOnClickListener(this);
         mRightToBtn.setOnClickListener(this);
+        mTextView.setOnClickListener(this);
 
         mAlignCenter = (RadioButton) findViewById(R.id.button_align_center);
         mAlignLeft = (RadioButton) findViewById(R.id.button_align_left);
@@ -88,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements
 
         mEditText = (TextInputEditText) findViewById(R.id.text_input_edit_text);
 
-
-
     }
 
     @Override
@@ -100,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements
         builder.setAlign(mAlign);
         mToolTipsManager.show(builder.build());
     }
-
-
 
     @Override
     public void onTipDismissed(View view, int anchorViewId, boolean byUser) {
@@ -155,6 +152,9 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.button_align_right:
                 mAlign = ToolTip.ALIGN_RIGHT;
+                break;
+            case R.id.text_view:
+                mToolTipsManager.dismissAll();
                 break;
         }
     }

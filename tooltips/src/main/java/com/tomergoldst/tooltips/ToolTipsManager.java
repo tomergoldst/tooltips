@@ -28,7 +28,9 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ToolTipsManager {
@@ -199,9 +201,10 @@ public class ToolTipsManager {
         return view != null && dismiss(view, false);
     }
 
-    public void clear() {
+    public void dismissAll() {
         if (!mTipsMap.isEmpty()) {
-            for (Map.Entry<Integer, View> entry : mTipsMap.entrySet()) {
+            List<Map.Entry<Integer, View>> entries = new ArrayList<>(mTipsMap.entrySet());
+            for (Map.Entry<Integer, View> entry : entries) {
                 dismiss(entry.getValue(), false);
             }
         }

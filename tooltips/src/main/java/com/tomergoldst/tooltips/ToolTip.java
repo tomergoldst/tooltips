@@ -17,6 +17,7 @@ limitations under the License.
 package com.tomergoldst.tooltips;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.IntDef;
 import android.text.Spannable;
 import android.view.View;
@@ -63,6 +64,7 @@ public class ToolTip {
     private @Gravity int mTextGravity;
     private Spannable mSpannableMessage;
     private int mTextSize;
+    private Typeface mTypeface;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -81,6 +83,7 @@ public class ToolTip {
         mTextGravity = builder.mTextGravity;
         mSpannableMessage = builder.mSpannableMessage;
         mTextSize = builder.mTextSize;
+        mTypeface = builder.mTypeface;
     }
 
     public Context getContext() {
@@ -189,6 +192,14 @@ public class ToolTip {
         return mSpannableMessage;
     }
 
+    public Typeface getTypeface() {
+        if (mTypeface == null) {
+            mTypeface = Typeface.DEFAULT;
+        }
+
+        return mTypeface;
+    }
+
     public static class Builder {
         private Context mContext;
         private View mAnchorView;
@@ -205,7 +216,7 @@ public class ToolTip {
         private @Gravity int mTextGravity;
         private Spannable mSpannableMessage;
         private int mTextSize;
-
+        private Typeface mTypeface;
 
         /**
          *
@@ -314,9 +325,13 @@ public class ToolTip {
             return this;
         }
 
+        public Builder setTypeface(Typeface typeface) {
+            mTypeface = typeface;
+            return this;
+        }
+
         public ToolTip build(){
             return new ToolTip(this);
         }
-
     }
 }

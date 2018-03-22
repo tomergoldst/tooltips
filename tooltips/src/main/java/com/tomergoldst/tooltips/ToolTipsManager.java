@@ -143,6 +143,7 @@ public class ToolTipsManager {
         tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
         tipView.setVisibility(View.INVISIBLE);
         tipView.setGravity(toolTip.getTextGravity());
+        tipView.setTypeface(toolTip.getTypeface());
         setTipViewElevation(tipView, toolTip);
         return tipView;
     }

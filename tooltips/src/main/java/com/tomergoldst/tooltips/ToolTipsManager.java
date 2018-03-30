@@ -21,6 +21,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.graphics.Outline;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -138,13 +139,28 @@ public class ToolTipsManager {
     @NonNull
     private TextView createTipView(ToolTip toolTip) {
         TextView tipView = new TextView(toolTip.getContext());
-        tipView.setTextColor(toolTip.getTextColor());
-        tipView.setTextSize(toolTip.getTextSize());
         tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
         tipView.setVisibility(View.INVISIBLE);
         tipView.setGravity(toolTip.getTextGravity());
+        tipView.setTextAppearance(toolTip.getContext(), toolTip.getTextAppearanceStyle());
+        setTextTypeFace(tipView, toolTip);
         setTipViewElevation(tipView, toolTip);
         return tipView;
+    }
+
+    /**
+     * Sets the custom typeface on the tipView if it was provided via {@link ToolTip}.
+     */
+    private void setTextTypeFace(TextView tipView, ToolTip toolTip) {
+        if (toolTip.getTypeface() != null) {
+            Typeface existingTypeFace = tipView.getTypeface();
+            if (existingTypeFace != null) {
+                // Preserve the text style defined in the text appearance style if available
+                tipView.setTypeface(toolTip.getTypeface(), existingTypeFace.getStyle());
+            } else {
+                tipView.setTypeface(toolTip.getTypeface());
+            }
+        }
     }
 
     private void setTipViewElevation(TextView tipView, ToolTip toolTip) {

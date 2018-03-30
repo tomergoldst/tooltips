@@ -1,9 +1,10 @@
 # Tooltips
 Simple to use library for android, Enabling to add a tooltip near any view with ease
 
-<img src="https://cloud.githubusercontent.com/assets/19874536/16546659/485f29ba-415a-11e6-898d-c880e4b643b6.gif" width="150" height="250"/> <img src="https://cloud.githubusercontent.com/assets/19874536/16546707/9b891816-415b-11e6-9be6-735a5649f1d7.gif" width="150" height="250"/>
+<img src="https://user-images.githubusercontent.com/99822/38155597-a5e9f4bc-3446-11e8-8db1-4dbd670584f5.gif" width="180" height="320"/> <img src="https://user-images.githubusercontent.com/99822/38155596-a5d9990a-3446-11e8-9b88-5b6ba2f45ac4.gif" width="180" height="320"/>
 
 ## What's new
+- **NOT RELEASED YET** v 1.0.10 Replaced `setTextColor()` & `setTextSize()` with `setTextAppearance()` API for more control over tool tip view appearance. Also added `setTypeface()` API to allow custom font for tooltips view.
 - v 1.0.9 fix RTL support for arabic
 - v 1.0.8 fix dismiss all method
 - v 1.0.7 decrease min sdk to 14
@@ -36,13 +37,23 @@ ToolTip.Builder builder = new ToolTip.Builder(this, mTextView, mRootLayout, "Tip
 with another layout. Prefer to pass in a layout which is higher in the xml tree as this will give the
 tip view more visible space.
  
-**OPTIONAL**: Customize your tip with background color, text color, alignment, text gravity and more. 
+**OPTIONAL**: Customize your tip with background color, text color, alignment, text gravity, type face and more. 
 ```java
 builder.setAlign(ToolTip.ALIGN_LEFT);
 builder.setBackgroundColor(getResources().getColor(R.color.colorOrange));
-builder.setTextColor(getResources().getColor(R.color.colorBlack));
 builder.setGravity(ToolTip.GRAVITY_RIGHT);
-builder.setTextSize(12);
+builder.setTextAppearance(R.style.TooltipTextAppearance); // from `styles.xml`
+builder.setTypeface(mCustomFontTypeface);
+```
+
+Here is an example on how you can define your text appearance in your `styles.xml`
+
+```xml
+<style name="TooltipTextAppearance">
+    <item name="android:textColor">@color/your_custom_color</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">bold</item>
+</style>
 ```
 
 Use `ToolTipManger` to show the tip

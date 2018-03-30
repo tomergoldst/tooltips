@@ -17,7 +17,10 @@ limitations under the License.
 package com.tomergoldst.tooltips;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.IntDef;
+import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.text.Spannable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,11 +61,11 @@ public class ToolTip {
     private int mOffsetY;
     private boolean mArrow;
     private int mBackgroundColor;
-    private int mTextColor;
     private float mElevation;
     private @Gravity int mTextGravity;
     private Spannable mSpannableMessage;
-    private int mTextSize;
+    private @StyleRes int mTextAppearanceStyle;
+    private Typeface mTypeface;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -76,11 +79,11 @@ public class ToolTip {
         mOffsetY = builder.mOffsetY;
         mArrow = builder.mArrow;
         mBackgroundColor = builder.mBackgroundColor;
-        mTextColor = builder.mTextColor;
         mElevation = builder.mElevation;
         mTextGravity = builder.mTextGravity;
         mSpannableMessage = builder.mSpannableMessage;
-        mTextSize = builder.mTextSize;
+        mTextAppearanceStyle = builder.mTextAppearanceStyle;
+        mTypeface = builder.mTypeface;
     }
 
     public Context getContext() {
@@ -123,10 +126,6 @@ public class ToolTip {
         return mBackgroundColor;
     }
 
-    public int getTextColor() {
-        return mTextColor;
-    }
-
     public boolean positionedLeftTo(){
         return POSITION_LEFT_TO == mPosition;
     }
@@ -163,8 +162,14 @@ public class ToolTip {
         return mElevation;
     }
 
-    public int getTextSize() {
-        return mTextSize;
+    @StyleRes
+    public int getTextAppearanceStyle() {
+        return mTextAppearanceStyle;
+    }
+
+    @Nullable
+    public Typeface getTypeface() {
+        return mTypeface;
     }
 
     public int getTextGravity(){
@@ -200,11 +205,11 @@ public class ToolTip {
         private int mOffsetY;
         private boolean mArrow;
         private int mBackgroundColor;
-        private int mTextColor;
         private float mElevation;
         private @Gravity int mTextGravity;
         private Spannable mSpannableMessage;
-        private int mTextSize;
+        private @StyleRes int mTextAppearanceStyle;
+        private Typeface mTypeface;
 
 
         /**
@@ -227,9 +232,8 @@ public class ToolTip {
             mOffsetY = 0;
             mArrow = true;
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
-            mTextColor = context.getResources().getColor(R.color.colorText);
             mTextGravity = GRAVITY_LEFT;
-            mTextSize = 14;
+            mTextAppearanceStyle = R.style.TooltipDefaultStyle;
         }
 
         /**
@@ -251,9 +255,8 @@ public class ToolTip {
             mOffsetY = 0;
             mArrow = true;
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
-            mTextColor = context.getResources().getColor(R.color.colorText);
             mTextGravity = GRAVITY_LEFT;
-            mTextSize = 14;
+            mTextAppearanceStyle = R.style.TooltipDefaultStyle;
         }
 
         public Builder setPosition(@Position int position){
@@ -294,11 +297,6 @@ public class ToolTip {
             return this;
         }
 
-        public Builder setTextColor(int color){
-            mTextColor = color;
-            return this;
-        }
-
         public Builder setElevation(float elevation){
             mElevation = elevation;
             return this;
@@ -309,8 +307,13 @@ public class ToolTip {
             return this;
         }
 
-        public Builder setTextSize(int sizeInSp) {
-            mTextSize = sizeInSp;
+        public Builder setTextAppearance(@StyleRes int textAppearance) {
+            mTextAppearanceStyle = textAppearance;
+            return this;
+        }
+
+        public Builder setTypeface(Typeface typeface) {
+            mTypeface = typeface;
             return this;
         }
 

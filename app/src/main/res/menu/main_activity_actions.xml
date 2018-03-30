@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Allows to use custom font -->
+    <item
+        android:id="@+id/use_custom_font_menu_item"
+        android:title="Use Custom Font"
+        android:visible="true"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+</menu>

@@ -19,9 +19,9 @@ package com.tomergoldst.tooltips;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
-import android.text.Spannable;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -51,10 +51,10 @@ public class ToolTip {
     public static final int GRAVITY_LEFT = 1;
     public static final int GRAVITY_RIGHT = 2;
 
-    private Context mContext;
-    private View mAnchorView;
-    private ViewGroup mRootViewGroup;
-    private String mMessage;
+    private @NonNull Context mContext;
+    private @NonNull View mAnchorView;
+    private @NonNull ViewGroup mRootViewGroup;
+    private @NonNull CharSequence mMessage;
     private @Position int mPosition;
     private @Align int mAlign;
     private int mOffsetX;
@@ -63,9 +63,8 @@ public class ToolTip {
     private int mBackgroundColor;
     private float mElevation;
     private @Gravity int mTextGravity;
-    private Spannable mSpannableMessage;
     private @StyleRes int mTextAppearanceStyle;
-    private Typeface mTypeface;
+    private @Nullable Typeface mTypeface;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -81,24 +80,27 @@ public class ToolTip {
         mBackgroundColor = builder.mBackgroundColor;
         mElevation = builder.mElevation;
         mTextGravity = builder.mTextGravity;
-        mSpannableMessage = builder.mSpannableMessage;
         mTextAppearanceStyle = builder.mTextAppearanceStyle;
         mTypeface = builder.mTypeface;
     }
 
+    @NonNull
     public Context getContext() {
         return mContext;
     }
 
+    @NonNull
     public View getAnchorView() {
         return mAnchorView;
     }
 
+    @NonNull
     public ViewGroup getRootView() {
         return mRootViewGroup;
     }
 
-    public String getMessage() {
+    @NonNull
+    public CharSequence getMessage() {
         return mMessage;
     }
 
@@ -172,6 +174,7 @@ public class ToolTip {
         return mTypeface;
     }
 
+    @NonNull
     public int getTextGravity(){
         int gravity;
         switch (mTextGravity){
@@ -190,15 +193,11 @@ public class ToolTip {
         return gravity;
     }
 
-    public Spannable getSpannableMessage() {
-        return mSpannableMessage;
-    }
-
     public static class Builder {
-        private Context mContext;
-        private View mAnchorView;
-        private ViewGroup mRootViewGroup;
-        private String mMessage;
+        private @NonNull Context mContext;
+        private @NonNull View mAnchorView;
+        private @NonNull ViewGroup mRootViewGroup;
+        private @NonNull CharSequence mMessage;
         private @Position int mPosition;
         private @Align int mAlign;
         private int mOffsetX;
@@ -207,25 +206,28 @@ public class ToolTip {
         private int mBackgroundColor;
         private float mElevation;
         private @Gravity int mTextGravity;
-        private Spannable mSpannableMessage;
         private @StyleRes int mTextAppearanceStyle;
-        private Typeface mTypeface;
+        private @Nullable Typeface mTypeface;
 
 
         /**
+         * Creates the tooltip builder with message and required parameters to show tooltip.
          *
          * @param context context
          * @param anchorView the view which near it we want to put the tip
          * @param root a class extends ViewGroup which the created tip view will be added to
-         * @param message message to show
-         * @param position  put the tip above / below / left to / right to
+         * @param message message to show. Note: This allows normal text and spannable text with spanned styles.
+         * @param position  put the tip above / below / left to / right to anchor view.
          */
-        public Builder(Context context, View anchorView, ViewGroup root, String message, @Position int position){
+        public Builder(@NonNull Context context,
+                       @NonNull View anchorView,
+                       @NonNull ViewGroup root,
+                       @NonNull CharSequence message,
+                       @Position int position) {
             mContext = context;
             mAnchorView = anchorView;
             mRootViewGroup = root;
             mMessage = message;
-            mSpannableMessage = null;
             mPosition = position;
             mAlign = ALIGN_CENTER;
             mOffsetX = 0;
@@ -236,34 +238,13 @@ public class ToolTip {
             mTextAppearanceStyle = R.style.TooltipDefaultStyle;
         }
 
-        /**
-         * @param context    context
-         * @param anchorView the view which near it we want to put the tip
-         * @param root       a class extends ViewGroup which the created tip view will be added to
-         * @param message    spannable message to show
-         * @param position   put the tip above / below / left to / right to
-         */
-        public Builder(Context context, View anchorView, ViewGroup root, Spannable message, @Position int position) {
-            mContext = context;
-            mAnchorView = anchorView;
-            mRootViewGroup = root;
-            mMessage = null;
-            mSpannableMessage = message;
-            mPosition = position;
-            mAlign = ALIGN_CENTER;
-            mOffsetX = 0;
-            mOffsetY = 0;
-            mArrow = true;
-            mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
-            mTextGravity = GRAVITY_LEFT;
-            mTextAppearanceStyle = R.style.TooltipDefaultStyle;
-        }
-
+        @NonNull
         public Builder setPosition(@Position int position){
             mPosition = position;
             return this;
         }
 
+        @NonNull
         public Builder setAlign(@Align int align){
             mAlign = align;
             return this;
@@ -273,6 +254,7 @@ public class ToolTip {
          * @param offset offset to move the tip on x axis after tip was positioned
          * @return offset
          */
+        @NonNull
         public Builder setOffsetX(int offset){
             mOffsetX = offset;
             return this;
@@ -282,41 +264,49 @@ public class ToolTip {
          * @param offset offset to move the tip on y axis after tip was positioned
          * @return offset
          */
+        @NonNull
         public Builder setOffsetY(int offset){
             mOffsetY = offset;
             return this;
         }
 
+        @NonNull
         public Builder withArrow(boolean value){
             mArrow = value;
             return this;
         }
 
+        @NonNull
         public Builder setBackgroundColor(int color){
             mBackgroundColor = color;
             return this;
         }
 
+        @NonNull
         public Builder setElevation(float elevation){
             mElevation = elevation;
             return this;
         }
 
+        @NonNull
         public Builder setGravity(@Gravity int gravity){
             mTextGravity = gravity;
             return this;
         }
 
+        @NonNull
         public Builder setTextAppearance(@StyleRes int textAppearance) {
             mTextAppearanceStyle = textAppearance;
             return this;
         }
 
-        public Builder setTypeface(Typeface typeface) {
+        @NonNull
+        public Builder setTypeface(@NonNull Typeface typeface) {
             mTypeface = typeface;
             return this;
         }
 
+        @NonNull
         public ToolTip build(){
             return new ToolTip(this);
         }

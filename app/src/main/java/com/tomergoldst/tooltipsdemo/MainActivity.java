@@ -16,10 +16,12 @@ limitations under the License.
 
 package com.tomergoldst.tooltipsdemo;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -127,8 +129,15 @@ public class MainActivity extends AppCompatActivity implements
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        ToolTip.Builder builder = new ToolTip.Builder(this, mTextView, mRootLayout, TIP_TEXT, ToolTip.POSITION_ABOVE);
+        // This tip is shows the first time the sample app is loaded. Use a message that gives user
+        // guide on how to use the sample app. Also try to showcase the ability of the app.
+        CharSequence initialGuideTex = Html.fromHtml("Click on the <a href='#'>Buttons</a> " +
+                "and the <a href='#'>Radio Buttons</a> bellow to test various tool tip configurations." +
+                "<br><br><font color='grey'><small>GOT IT</small></font>");
+
+        ToolTip.Builder builder = new ToolTip.Builder(this, mTextView, mRootLayout, initialGuideTex, ToolTip.POSITION_ABOVE);
         builder.setAlign(mAlign);
+        builder.setBackgroundColor(Color.DKGRAY);
         builder.setTextAppearance(R.style.TooltipTextAppearance);
         mToolTipsManager.show(builder.build());
     }

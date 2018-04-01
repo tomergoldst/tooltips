@@ -4,6 +4,7 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 <img src="https://user-images.githubusercontent.com/99822/38155597-a5e9f4bc-3446-11e8-8db1-4dbd670584f5.gif" width="180" height="320"/> <img src="https://user-images.githubusercontent.com/99822/38155596-a5d9990a-3446-11e8-9b88-5b6ba2f45ac4.gif" width="180" height="320"/>
 
 ## What's new
+- **NOT RELEASED YET** v 1.0.11 Updated `ToolTip.Builder()` API to accept `CharSequence` as tooltip message text to allow broader type of spannable messages.
 - **NOT RELEASED YET** v 1.0.10 Replaced `setTextColor()` & `setTextSize()` with `setTextAppearance()` API for more control over tool tip view appearance. Also added `setTypeface()` API to allow custom font for tooltips view.
 - v 1.0.9 fix RTL support for arabic
 - v 1.0.8 fix dismiss all method

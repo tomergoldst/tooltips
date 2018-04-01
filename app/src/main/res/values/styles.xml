@@ -23,6 +23,7 @@
     -->
     <style name="TooltipTextAppearance">
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorLink">@android:color/holo_blue_light</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>

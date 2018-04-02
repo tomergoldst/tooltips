@@ -24,6 +24,7 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -44,6 +45,9 @@ public class ToolTipsManager {
     private Map<Integer, View> mTipsMap = new HashMap<>();
 
     private int mAnimationDuration;
+    @NonNull
+    private ToolTipAnimator mToolTipAnimator;
+    @Nullable
     private TipListener mListener;
 
     public interface TipListener {
@@ -52,10 +56,11 @@ public class ToolTipsManager {
 
     public ToolTipsManager(){
         mAnimationDuration = DEFAULT_ANIM_DURATION;
+        mToolTipAnimator = new AnimationUtils();
     }
 
-    public ToolTipsManager(TipListener listener){
-        mAnimationDuration = DEFAULT_ANIM_DURATION;
+    public ToolTipsManager(@NonNull TipListener listener){
+        this();
         mListener = listener;
     }
 
@@ -66,7 +71,7 @@ public class ToolTipsManager {
         }
 
         // animate tip visibility
-        AnimationUtils.popup(tipView, mAnimationDuration).start();
+        mToolTipAnimator.popup(tipView, mAnimationDuration).start();
 
         return tipView;
     }
@@ -191,6 +196,14 @@ public class ToolTipsManager {
         mAnimationDuration = duration;
     }
 
+    /**
+     * Set a custom tooltip animator to override show and hide animation.
+     * @param animator ToolTipAnimator
+     */
+    public void setToolTipAnimator(@NonNull ToolTipAnimator animator) {
+        mToolTipAnimator = animator;
+    }
+
     public boolean dismiss(View tipView, boolean byUser) {
         if (tipView != null && isVisible(tipView)) {
             int key = (int) tipView.getTag();
@@ -228,7 +241,7 @@ public class ToolTipsManager {
     }
 
     private void animateDismiss(final View view, final boolean byUser) {
-        AnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
+        mToolTipAnimator.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);

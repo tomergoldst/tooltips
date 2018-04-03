@@ -4,9 +4,10 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 <img src="https://user-images.githubusercontent.com/99822/38155597-a5e9f4bc-3446-11e8-8db1-4dbd670584f5.gif" width="180" height="320"/> <img src="https://user-images.githubusercontent.com/99822/38155596-a5d9990a-3446-11e8-9b88-5b6ba2f45ac4.gif" width="180" height="320"/>
 
 ## What's new
-- **NOT RELEASED YET** v 1.0.12 Added `ToolTipsManager.setToolTipAnimator()` API to allow library consumer to customize the tooltip show and hide animation.
-- **NOT RELEASED YET** v 1.0.11 Updated `ToolTip.Builder()` API to accept `CharSequence` as tooltip message text to allow broader type of spannable messages.
-- **NOT RELEASED YET** v 1.0.10 Replaced `setTextColor()` & `setTextSize()` with `setTextAppearance()` API for more control over tool tip view appearance. Also added `setTypeface()` API to allow custom font for tooltips view.
+- v 1.0.10 Added several APIs to allow complete customization of the tooltip view.
+  * Replaced `setTextColor()` & `setTextSize()` with `setTextAppearance()` API for more control over tool tip view appearance. Also added `setTypeface()` API to allow custom font for tooltips view.
+  * Updated `ToolTip.Builder()` API to accept `CharSequence` as tooltip message text to allow broader type of spannable messages.
+  * Added `ToolTipsManager.setToolTipAnimator()` API to allow library consumer to customize the tooltip show and hide animation.
 - v 1.0.9 fix RTL support for arabic
 - v 1.0.8 fix dismiss all method
 - v 1.0.7 decrease min sdk to 14
@@ -56,6 +57,12 @@ Here is an example on how you can define your text appearance in your `styles.xm
     <item name="android:textSize">16sp</item>
     <item name="android:textStyle">bold</item>
 </style>
+```
+
+You can also customize the animation used to show and hide the tooltip view by providing `ToolTipAnimator` implementation and setting it in the `ToolTipsManager`.
+```java
+mToolTipsManager = new ToolTipsManager(context);
+mToolTipsManager.setToolTipAnimator(MyCustomToolTipAnimator());
 ```
 
 Use `ToolTipManger` to show the tip

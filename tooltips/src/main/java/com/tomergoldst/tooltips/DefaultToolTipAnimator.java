@@ -27,7 +27,7 @@ import android.view.animation.OvershootInterpolator;
 /**
  * Created by Tomer on 18/06/2016.
  */
-class AnimationUtils implements ToolTipAnimator {
+class DefaultToolTipAnimator implements ToolTipAnimator {
 
     @Override
     public ObjectAnimator popup(final View view, final long duration) {

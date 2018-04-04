@@ -21,8 +21,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.graphics.Outline;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -43,6 +45,9 @@ public class ToolTipsManager {
     private Map<Integer, View> mTipsMap = new HashMap<>();
 
     private int mAnimationDuration;
+    @NonNull
+    private ToolTipAnimator mToolTipAnimator;
+    @Nullable
     private TipListener mListener;
 
     public interface TipListener {
@@ -51,10 +56,11 @@ public class ToolTipsManager {
 
     public ToolTipsManager(){
         mAnimationDuration = DEFAULT_ANIM_DURATION;
+        mToolTipAnimator = new DefaultToolTipAnimator();
     }
 
-    public ToolTipsManager(TipListener listener){
-        mAnimationDuration = DEFAULT_ANIM_DURATION;
+    public ToolTipsManager(@NonNull TipListener listener){
+        this();
         mListener = listener;
     }
 
@@ -65,7 +71,7 @@ public class ToolTipsManager {
         }
 
         // animate tip visibility
-        AnimationUtils.popup(tipView, mAnimationDuration).start();
+        mToolTipAnimator.popup(tipView, mAnimationDuration).start();
 
         return tipView;
     }
@@ -138,13 +144,36 @@ public class ToolTipsManager {
     @NonNull
     private TextView createTipView(ToolTip toolTip) {
         TextView tipView = new TextView(toolTip.getContext());
-        tipView.setTextColor(toolTip.getTextColor());
-        tipView.setTextSize(toolTip.getTextSize());
-        tipView.setText(toolTip.getMessage() != null ? toolTip.getMessage() : toolTip.getSpannableMessage());
+        tipView.setText(toolTip.getMessage());
         tipView.setVisibility(View.INVISIBLE);
         tipView.setGravity(toolTip.getTextGravity());
+        setTextAppearance(tipView, toolTip);
+        setTextTypeFace(tipView, toolTip);
         setTipViewElevation(tipView, toolTip);
         return tipView;
+    }
+
+    private void setTextAppearance(TextView tipView, ToolTip toolTip) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tipView.setTextAppearance(toolTip.getTextAppearanceStyle());
+        } else {
+            tipView.setTextAppearance(toolTip.getContext(), toolTip.getTextAppearanceStyle());
+        }
+    }
+
+    /**
+     * Sets the custom typeface on the tipView if it was provided via {@link ToolTip}.
+     */
+    private void setTextTypeFace(TextView tipView, ToolTip toolTip) {
+        if (toolTip.getTypeface() != null) {
+            Typeface existingTypeFace = tipView.getTypeface();
+            if (existingTypeFace != null) {
+                // Preserve the text style defined in the text appearance style if available
+                tipView.setTypeface(toolTip.getTypeface(), existingTypeFace.getStyle());
+            } else {
+                tipView.setTypeface(toolTip.getTypeface());
+            }
+        }
     }
 
     private void setTipViewElevation(TextView tipView, ToolTip toolTip) {
@@ -173,6 +202,14 @@ public class ToolTipsManager {
 
     public void setAnimationDuration(int duration){
         mAnimationDuration = duration;
+    }
+
+    /**
+     * Set a custom tooltip animator to override show and hide animation.
+     * @param animator ToolTipAnimator
+     */
+    public void setToolTipAnimator(@NonNull ToolTipAnimator animator) {
+        mToolTipAnimator = animator;
     }
 
     public boolean dismiss(View tipView, boolean byUser) {
@@ -212,7 +249,7 @@ public class ToolTipsManager {
     }
 
     private void animateDismiss(final View view, final boolean byUser) {
-        AnimationUtils.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
+        mToolTipAnimator.popout(view, mAnimationDuration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);

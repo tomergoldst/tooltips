@@ -21,7 +21,7 @@ Simple to use library for android, Enabling to add a tooltip near any view with 
 Add a dependency to your app build.gradle
 ```groovy
 dependencies {
-    compile 'com.tomergoldst.android:tooltips:1.0.9'
+    compile 'com.tomergoldst.android:tooltips:1.0.10'
 }
 ```
 

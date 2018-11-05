@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/tomergoldst/tooltips'
     gitUrl = 'https://github.com/tomergoldst/tooltips.git'
 
-    libraryVersion = '1.0.10'
+    libraryVersion = '1.0.11'
 
     developerId = 'tomergoldst'
     developerName = 'Tomer Goldstein'
@@ -30,8 +30,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 11
-        versionName "1.0.10"
+        versionCode 12
+        versionName "1.0.11"
     }
     buildTypes {
         release {

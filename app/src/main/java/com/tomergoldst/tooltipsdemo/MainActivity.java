@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements
     Button mRightToBtn;
 
     RadioButton mAlignRight;
-    RadioButton mAlignLeft = (RadioButton) findViewById(R.id.button_align_left);
+    RadioButton mAlignLeft;
     RadioButton mAlignCenter;
 
     @ToolTip.Align int mAlign = ToolTip.ALIGN_CENTER;
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements
 
         mAlignCenter = findViewById(R.id.button_align_center);
         mAlignRight = findViewById(R.id.button_align_right);
+        mAlignLeft = findViewById(R.id.button_align_left);
 
         mAlignCenter.setOnClickListener(this);
         mAlignLeft.setOnClickListener(this);

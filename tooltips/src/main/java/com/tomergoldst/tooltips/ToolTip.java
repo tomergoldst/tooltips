@@ -26,8 +26,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
 public class ToolTip {
 
+    @Retention(SOURCE)
     @IntDef({POSITION_ABOVE, POSITION_BELOW, POSITION_LEFT_TO, POSITION_RIGHT_TO})
     public @interface Position {}
     public static final int POSITION_ABOVE = 0;
@@ -35,12 +40,14 @@ public class ToolTip {
     public static final int POSITION_LEFT_TO = 3;
     public static final int POSITION_RIGHT_TO = 4;
 
+    @Retention(SOURCE)
     @IntDef({ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT})
     public @interface Align {}
     public static final int ALIGN_CENTER = 0;
     public static final int ALIGN_LEFT = 1;
     public static final int ALIGN_RIGHT = 2;
 
+    @Retention(SOURCE)
     @IntDef({GRAVITY_CENTER, GRAVITY_LEFT, GRAVITY_RIGHT})
     public @interface Gravity {}
     public static final int GRAVITY_CENTER = 0;

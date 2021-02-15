@@ -22,9 +22,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 
-/**
- * Created by Tomer on 01/07/2016.
- */
 class ToolTipBackgroundConstructor {
 
     /**

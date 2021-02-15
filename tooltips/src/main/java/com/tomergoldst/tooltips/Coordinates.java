@@ -18,10 +18,6 @@ package com.tomergoldst.tooltips;
 
 import android.view.View;
 
-/**
- * Created by Tomer on 30/06/2016.
- *
- */
 class Coordinates {
 
     int left;

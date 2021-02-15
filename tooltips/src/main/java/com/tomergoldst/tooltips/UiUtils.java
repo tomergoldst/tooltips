@@ -18,9 +18,6 @@ package com.tomergoldst.tooltips;
 
 import java.util.Locale;
 
-/**
- * Created by Tomer on 01/07/2016.
- */
 class UiUtils {
 
     public static boolean isRtl() {

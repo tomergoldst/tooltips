@@ -10,12 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tomergoldst.tooltipsdemo.MainActivity">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:inputType="text"
             tools:ignore="HardcodedText" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/text_view_buttons_label"

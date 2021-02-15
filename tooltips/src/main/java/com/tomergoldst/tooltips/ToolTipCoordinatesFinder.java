@@ -21,9 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by Tomer on 01/07/2016.
- */
 class ToolTipCoordinatesFinder {
 
     /**

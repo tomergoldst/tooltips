@@ -18,18 +18,14 @@ package com.tomergoldst.tooltips;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Tomer on 01/07/2016.
- *
- *
- */
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+
 public class ToolTip {
 
     @IntDef({POSITION_ABOVE, POSITION_BELOW, POSITION_LEFT_TO, POSITION_RIGHT_TO})
@@ -51,20 +47,20 @@ public class ToolTip {
     public static final int GRAVITY_LEFT = 1;
     public static final int GRAVITY_RIGHT = 2;
 
-    private @NonNull Context mContext;
-    private @NonNull View mAnchorView;
-    private @NonNull ViewGroup mRootViewGroup;
-    private @NonNull CharSequence mMessage;
+    @NonNull private final Context mContext;
+    @NonNull private final View mAnchorView;
+    @NonNull private final ViewGroup mRootViewGroup;
+    @NonNull private final CharSequence mMessage;
     private @Position int mPosition;
-    private @Align int mAlign;
-    private int mOffsetX;
-    private int mOffsetY;
-    private boolean mArrow;
-    private int mBackgroundColor;
-    private float mElevation;
-    private @Gravity int mTextGravity;
-    private @StyleRes int mTextAppearanceStyle;
-    private @Nullable Typeface mTypeface;
+    private final @Align int mAlign;
+    private final int mOffsetX;
+    private final int mOffsetY;
+    private final boolean mArrow;
+    private final int mBackgroundColor;
+    private final float mElevation;
+    private final @Gravity int mTextGravity;
+    private final @StyleRes int mTextAppearanceStyle;
+    @Nullable private final Typeface mTypeface;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -73,7 +69,6 @@ public class ToolTip {
         mMessage = builder.mMessage;
         mPosition = builder.mPosition;
         mAlign = builder.mAlign;
-        mOffsetX = builder.mOffsetX;
         mOffsetX = builder.mOffsetX;
         mOffsetY = builder.mOffsetY;
         mArrow = builder.mArrow;
@@ -178,15 +173,13 @@ public class ToolTip {
     public int getTextGravity(){
         int gravity;
         switch (mTextGravity){
-            case GRAVITY_CENTER:
-                gravity = android.view.Gravity.CENTER;
-                break;
             case GRAVITY_LEFT:
                 gravity = android.view.Gravity.START;
                 break;
             case GRAVITY_RIGHT:
                 gravity = android.view.Gravity.END;
                 break;
+            case GRAVITY_CENTER:
             default:
                 gravity = android.view.Gravity.CENTER;
         }
@@ -194,10 +187,10 @@ public class ToolTip {
     }
 
     public static class Builder {
-        private @NonNull Context mContext;
-        private @NonNull View mAnchorView;
-        private @NonNull ViewGroup mRootViewGroup;
-        private @NonNull CharSequence mMessage;
+        private final @NonNull Context mContext;
+        private final @NonNull View mAnchorView;
+        private final @NonNull ViewGroup mRootViewGroup;
+        private final @NonNull CharSequence mMessage;
         private @Position int mPosition;
         private @Align int mAlign;
         private int mOffsetX;

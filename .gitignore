@@ -7,3 +7,5 @@
 .DS_Store
 /build
 /captures
+secring.gpg
+

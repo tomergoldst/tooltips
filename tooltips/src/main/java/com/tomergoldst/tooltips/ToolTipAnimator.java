@@ -4,9 +4,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-/**
- * Animator for the tooltip view.
- */
 public interface ToolTipAnimator {
     /**
      * Object animator for the tooltip view to pop-up.

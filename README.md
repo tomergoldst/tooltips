@@ -132,7 +132,7 @@ Where `mTextView` is the same view we asked to position a tip near it
 
 If you want to react when tip has been dismissed, Implement `ToolTipsManager.TipListener` interface and use appropriate `ToolTipsManager` constructor
 ```java
-public class MainActivity extends AppCompatActivity implements ToolTipsManager.TipListener {
+public class MainActivity extends Activity implements ToolTipsManager.TipListener {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

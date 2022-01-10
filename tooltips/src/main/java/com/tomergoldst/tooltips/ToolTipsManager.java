@@ -151,6 +151,7 @@ public class ToolTipsManager {
         setTextAppearance(tipView, toolTip);
         setTextTypeFace(tipView, toolTip);
         setTipViewElevation(tipView, toolTip);
+        setTipViewMaxWidth(tipView, toolTip);
         return tipView;
     }
 
@@ -190,6 +191,12 @@ public class ToolTipsManager {
                 tipView.setOutlineProvider(viewOutlineProvider);
                 tipView.setElevation(toolTip.getElevation());
             }
+        }
+    }
+
+    private void setTipViewMaxWidth(TextView tipView, ToolTip toolTip) {
+        if (toolTip.getMaxWidth() > 0) {
+            tipView.setMaxWidth(toolTip.getMaxWidth());
         }
     }
 

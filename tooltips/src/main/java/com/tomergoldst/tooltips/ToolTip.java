@@ -68,6 +68,7 @@ public class ToolTip {
     private final @Gravity int mTextGravity;
     private final @StyleRes int mTextAppearanceStyle;
     @Nullable private final Typeface mTypeface;
+    private final int mMaxWidth;
 
     public ToolTip(Builder builder){
         mContext = builder.mContext;
@@ -84,6 +85,7 @@ public class ToolTip {
         mTextGravity = builder.mTextGravity;
         mTextAppearanceStyle = builder.mTextAppearanceStyle;
         mTypeface = builder.mTypeface;
+        mMaxWidth = builder.mMaxWidth;
     }
 
     @NonNull
@@ -193,6 +195,10 @@ public class ToolTip {
         return gravity;
     }
 
+    public int getMaxWidth() {
+        return mMaxWidth;
+    }
+
     public static class Builder {
         private final @NonNull Context mContext;
         private final @NonNull View mAnchorView;
@@ -208,7 +214,7 @@ public class ToolTip {
         private @Gravity int mTextGravity;
         private @StyleRes int mTextAppearanceStyle;
         private @Nullable Typeface mTypeface;
-
+        private int mMaxWidth;
 
         /**
          * Creates the tooltip builder with message and required parameters to show tooltip.
@@ -236,6 +242,7 @@ public class ToolTip {
             mBackgroundColor = context.getResources().getColor(R.color.colorBackground);
             mTextGravity = GRAVITY_LEFT;
             mTextAppearanceStyle = R.style.TooltipDefaultStyle;
+            mMaxWidth = 0;
         }
 
         @NonNull
@@ -303,6 +310,11 @@ public class ToolTip {
         @NonNull
         public Builder setTypeface(@NonNull Typeface typeface) {
             mTypeface = typeface;
+            return this;
+        }
+
+        public Builder setMaxWidth(int maxPixels){
+            mMaxWidth = maxPixels;
             return this;
         }
 

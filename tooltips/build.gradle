@@ -1,35 +1,20 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.vanniktech.maven.publish'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'tooltips'
-
-    publishedGroupId = 'com.tomergoldst.android'
-    libraryName = 'ToolTips'
-    artifact = 'tooltips'
-
-    libraryDescription = 'Simple to use library for android, enabling to add a tooltip near any view with ease'
-
-    siteUrl = 'https://github.com/tomergoldst/tooltips'
-    gitUrl = 'https://github.com/tomergoldst/tooltips.git'
-
-    libraryVersion = '1.1.1'
-
-    developerId = 'tomergoldst'
-    developerName = 'Tomer Goldstein'
-    developerEmail = 'tomergoldst2@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+File localPropsFile = project.rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    // Read local.properties file first if it exists
+    def localProps = new Properties()
+    new FileInputStream(localPropsFile).withCloseable { is -> localProps.load(is) }
+    localProps.each { name, value -> ext[name] = value }
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 14
         versionName "1.1.1"
     }
@@ -39,13 +24,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishing {
+        repositories {
+            maven {
+                def releasesRepoUrl = "$buildDir/repos/releases"
+                def snapshotsRepoUrl = "$buildDir/repos/snapshots"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            }
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.13.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
 }
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
